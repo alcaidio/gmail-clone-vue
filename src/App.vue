@@ -22,6 +22,11 @@ export default {
 </script>
 
 <style>
+* {
+  padding: 0;
+  margin: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -91,8 +96,7 @@ input[type='checkbox']:checked {
   top: 0;
 }
 .overlay {
-  filter: blur(1.5rem);
-  opacity: 0.5;
+  opacity: 0.4;
   background-color: black;
 }
 .modal-card {
