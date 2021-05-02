@@ -1,13 +1,31 @@
 <template>
   <h1>VMail Inbox</h1>
+  <table class="mail-table">
+    <tbody>
+      <tr v-for="email in unarchivedEmails" :key="email.id" class="clickable">
+        <td>
+          <input type="checkbox" />
+        </td>
+        <td>{{ email.from }}</td>
+        <td>
+          <p><strong>{{ email.subject }}</strong> - {{ email.body }}</p>
+        </td>
+        <td class="date">{{ format(new Date(email.sentAt), 'dd MMMM, yyyy') }}</td>
+        <td><button @click="email.archive = true">Archive</button></td>
+      </tr>
+    </tbody>
+  </table>
 </template>
-  
+
 <script>
+
+import { format } from 'date-fns'
 
 export default {
   name: 'App',
-  data(){
+  data() {
     return {
+      format,
       "emails": [
         {
           "id": 1,
@@ -46,6 +64,16 @@ export default {
           "read": false
         }
       ]
+    }
+  },
+  computed: {
+    sortedEmails() {
+      const compareFn = (e1, e2) => e1.sentAt < e2.sentAt ? 1 : -1
+      return this.emails.sort(compareFn)
+    }, 
+    unarchivedEmails() {
+      const isNotArchived = e => !e.archived
+      return this.sortedEmails.filter(isNotArchived)
     }
   }
 };
@@ -121,6 +149,7 @@ input[type='checkbox']:checked {
   top: 0;
 }
 .overlay {
+  filter: blur(1.5rem);
   opacity: 0.5;
   background-color: black;
 }
