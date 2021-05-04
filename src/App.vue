@@ -22,10 +22,6 @@ export default {
 </script>
 
 <style>
-* {
-  padding: 0;
-  margin: 0;
-}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -52,13 +48,18 @@ button:disabled {
 
 button.selected {
   cursor: auto;
-  color: black;
-  border-color: black;
+  color: #444;
+  border-color: #444;
   border-width: 2px;
 }
 
 .clickable {
   cursor: pointer;
+  opacity: 1;
+}
+
+.clickable:hover {
+  opacity: 0.8;
 }
 
 input[type='checkbox'] {
@@ -96,19 +97,23 @@ input[type='checkbox']:checked {
   top: 0;
 }
 .overlay {
-  opacity: 0.4;
-  background-color: black;
+  opacity: 0.8;
+  background-color: #777;
+  cursor: pointer;
+  filter: blur(4px);
 }
 .modal-card {
   position: relative;
-  max-width: 80%;
+  max-width: 70%;
   margin: auto;
   margin-top: 30px;
   padding: 20px;
   background-color: white;
-  min-height: 500px;
+  min-height: 400px;
   z-index: 10;
   opacity: 1;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-radius: 0.375rem;
 }
 
 /* Email Modal */
